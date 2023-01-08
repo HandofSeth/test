@@ -39,6 +39,8 @@ class CitiesRepository extends ServiceEntityRepository
         }
     }
 
+    
+
 //    /**
 //     * @return Cities[] Returns an array of Cities objects
 //     */
@@ -76,7 +78,15 @@ public function findOneBySomeField($value): array
             ->getResult()
         ;
     }
-
+    public function findCityByName($value): array
+    {
+         return $this->createQueryBuilder('c')
+             ->andWhere('c.name = :val')
+             ->setParameter('val', $value )
+            ->getQuery()
+            ->getResult()
+         ;
+     }
 
 
 }

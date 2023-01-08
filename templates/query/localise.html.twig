@@ -32,49 +32,19 @@
 
 
 function getdata(){
+depart = 'Nîmes';
+destination=['Paris','Montpellier','Marseille'];
 
-let data  = new FormData();
-let query = 'Allcity'
-let value = document.getElementById('value').value;
-console.log(value);
-data.append('target',query);
-data.append('value',value);
-console.log(data);
-$.ajax({
-                url: "{{ path('app_query') }}",
-                data: data,
-                method: 'POST',
-                dataType: 'json',
-                contentType: false,
-                processData: false,
-                success: function (response) {
-                    $('.remove').remove();
-                    if(response.length>1) {
 
-                        for(let i=0;i<response.length;i++)
-                        {
-                            $(`
-                         <tr class="remove mt-0 mb-0">
 
-                        <td>${response[i]['name']}</td>
-                        <td>${response[i]['departmentCode']}</td>
-                        <td>${response[i]['inseeCode']}</td>
-                        <td>${response[i]['gpsLat']}</td> 
-                        <td>${response[i]['gpsLng']}</td>   
-                        </tr>
-                        `).appendTo('#tableBody').show('slow');
-                        }
-                       
-                    } else {
-                       
-                    }
-                },
-               
-                
-            });
+
+
+
+
+
+
 
 }
-{# getdata(); #}
 </script>
 
 
