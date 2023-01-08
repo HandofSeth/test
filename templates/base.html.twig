@@ -2,73 +2,17 @@
 <html>
     <head>
     
+
         <meta charset="UTF-8">
+        {% block stylsheet%}{% endblock %}
         <title>{% block title %}Welcome!{% endblock %}</title>
     
        
     </head>
     <body>
-        <input type="text" id="value">
-        <button onclick=getdata()>click</button> 
-        <table>
-            <thead>
-            <tr>
-                <th data-field="name" scope="col" >name</th>
-                <th data-field="department_code" data-sortable="true" scope="col" >departement</th>
-                <th data-field="zip_code" data-sortable="true" scope="col">code postal</th>
-            </tr>
-            </thead>
-            <tbody id="tableBody">
-            </tbody>
-        </table>
+        
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-<script>
-
-
-function getdata(){
-
-let data  = new FormData();
-let query = 'Allcity'
-let value = document.getElementById('value').value;
-console.log(value);
-data.append('target',query);
-data.append('value',value);
-$.ajax({
-                url: "{{ path('app_query') }}",
-                data: data,
-                method: 'POST',
-                dataType: 'json',
-                contentType: false,
-                processData: false,
-                success: function (response) {
-                    $('.remove').remove();
-                    if(response.length>1) {
-
-                        for(let i=0;i<response.length;i++)
-                        {
-                            $(`
-                         <tr class="remove mt-0 mb-0">
-
-                        <td>${response[i]['name']}</td>
-                        <td>${response[i]['departmentCode']}</td>
-                        <td>${response[i]['inseeCode']}</td>
-
-                        </tr>
-                        `).appendTo('#tableBody').show('slow');
-                        }
-                       
-                    } else {
-                       
-                    }
-                },
-               
-                
-            });
-
-}
-{# getdata(); #}
-</script>
+{% block body %}{% endblock %}
 
 
 
